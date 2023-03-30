@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const questionsRoute = require('./routes/questions');
+const answersRoute = require('./routes/answers');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use('/api/user', authRoute);
 app.use('/api/questions', questionsRoute);
+app.use('/api/answers', answersRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port} port`);
