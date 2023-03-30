@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
@@ -49,8 +47,11 @@ router.post('/login', async (req, res) => {
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if (!validPass) return res.status(400).send('Incorrect password');
 
-  const token = jwt.sign({ _id: user._id }, tokenSecret);
-  res.header('auth-token', token).send(token);
+  const token = jwt.sign(
+    { _id: user._id, username: user.username },
+    tokenSecret,
+  );
+  res.header('Authorization', token).send(token);
 });
 
 module.exports = router;
