@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
     { _id: user._id, username: user.username },
     tokenSecret,
   );
-  res.header('Authorization', token).send(token);
+  res.header('Authorization', token).send({ token, username: user.username });
 });
 
 module.exports = router;
