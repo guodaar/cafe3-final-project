@@ -19,6 +19,7 @@ textarea,
 button,
 li,
 ul {
+  margin: 0;
   box-sizing: border-box;
   color: rgb(34, 35, 37);
 }

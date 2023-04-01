@@ -1,5 +1,10 @@
-import { black, white, yellow } from "../../consts/colors";
-import { border, boxShadow, roundedBorder } from "../../consts/style";
+import { black, orange, white, yellow } from "../../consts/colors";
+import {
+  border,
+  boxShadow,
+  roundedBorder,
+  transition,
+} from "../../consts/style";
 
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
@@ -25,19 +30,21 @@ const CustomButton = styled.button`
   text-transform: capitalize;
   font-weight: 900;
   font-size: 1.2rem;
+  letter-spacing: 1px;
   cursor: pointer;
-  background-color: ${white};
+  background-color: ${yellow};
   box-shadow: ${boxShadow};
   border: ${border};
   border-radius: ${roundedBorder};
   padding: 10px 15px;
-  transition: 0.2s ease-in-out;
+  margin-top: 12px;
+  transition: ${transition};
 
-  &:hover {
+  &:active {
     box-shadow: none;
   }
 
-  &:active {
-    background-color: ${yellow};
+  &:hover {
+    background-color: ${orange};
   }
 `;
