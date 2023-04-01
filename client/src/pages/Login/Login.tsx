@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import BorderContainer from "../../components/Containers/BorderContainer";
 import Button from "../../components/Button/Button";
+import Emoji from "../../components/Emoji/Emoji";
 import { Formik } from "formik";
 import FormikInput from "../../components/Formik/FormikInput";
 import { LoginUser } from "../../types/user";
@@ -48,7 +49,7 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <BorderContainer>
+          <BorderContainer title="Login" symbol="✨">
             <StyledForm>
               <FormikInput type="email" name="email" placeholder="Email" />
               <FormikInput
@@ -59,7 +60,9 @@ const Login = () => {
               <Button type="submit" disabled={isSubmitting}>
                 Login
               </Button>
-              <StyledLink to={REGISTER_PATH}>Sign up</StyledLink>
+              <StyledLink to={REGISTER_PATH}>
+                Don't have an account? Sign up
+              </StyledLink>
             </StyledForm>
           </BorderContainer>
         )}
@@ -73,6 +76,7 @@ export default Login;
 const StyledLink = styled(Link)`
   text-align: center;
   color: black;
+  margin-top: 12px;
 
   &:hover {
     text-decoration: none;
