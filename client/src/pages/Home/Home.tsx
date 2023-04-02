@@ -1,6 +1,7 @@
+import { lavender, white } from "../../consts/colors";
+
 import { Question } from "../../types/question";
 import QuestionCard from "../../components/QuestionCard/QuestionCard";
-import { lavender } from "../../consts/colors";
 import { roundedBorder } from "../../consts/style";
 import styled from "styled-components";
 import { useQuestions } from "../../hooks/questions";
@@ -15,15 +16,16 @@ const Home = (props: Props) => {
   console.log(questions);
 
   return (
-    <div>
+    <>
       <Content>
+        <Title>Conversations Sparked so far:</Title>
         <QuestionsContainer>
           {questions.map((question: Question) => (
             <QuestionCard key={question._id} question={question} />
           ))}
         </QuestionsContainer>
       </Content>
-    </div>
+    </>
   );
 };
 
@@ -33,11 +35,18 @@ const Content = styled.div`
   background-color: ${lavender};
   border-radius: ${roundedBorder};
   height: 100vh;
+  padding: 32px 5vw;
+`;
+
+const Title = styled.h2`
+  font-family: "Montserrat";
+  color: ${white};
+  font-weight: 700;
 `;
 
 const QuestionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px 5vw;
+  margin-top: 32px;
 `;
