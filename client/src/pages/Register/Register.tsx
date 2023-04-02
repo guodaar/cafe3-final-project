@@ -64,7 +64,7 @@ const Register = () => {
                 name="repeatPassword"
                 placeholder="Repeat Password"
               />
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} accent>
                 Register
               </Button>
               <StyledLink to={LOGIN_PATH}>

@@ -24,13 +24,13 @@ const validationSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
 
-  const { setUser } = useContext(UserContext);
+  const { handleLogin } = useContext(UserContext);
 
   const handleSubmit = async (values: LoginUser) => {
     loginUser(values)
       .then((response) => {
         toast.success("You have successfully logged in!");
-        setUser(response);
+        handleLogin(response);
         navigate(HOME_PATH);
       })
       .catch((error) => {
@@ -57,7 +57,7 @@ const Login = () => {
                 name="password"
                 placeholder="Password"
               />
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} accent>
                 Login
               </Button>
               <StyledLink to={REGISTER_PATH}>
