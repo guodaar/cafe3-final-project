@@ -5,12 +5,14 @@ import { useSessionStorage } from "../hooks/sessionStorage";
 const UserContext = createContext<{
   token: string | null;
   username: string | null;
-  setUser: any;
+  handleLogin: (newToken: any) => void;
+  handleLogout: () => void;
   isLoggedIn: boolean;
 }>({
   token: null,
   username: null,
-  setUser: () => {},
+  handleLogin: () => {},
+  handleLogout: () => {},
   isLoggedIn: false,
 });
 
@@ -19,13 +21,18 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   const [username, setUsername] = useState<string | null>(null);
   const isLoggedIn = !!token;
 
-  const setUser = (newToken: any) => {
+  const handleLogin = (newToken: any) => {
     setToken(newToken.token);
     setUsername(newToken.username);
   };
 
+  const handleLogout = () => {
+    setToken(null);
+    setUsername(null);
+  };
+
   return (
-    <UserContext.Provider value={{ isLoggedIn, token, username, setUser }}>
+    <UserContext.Provider value={{ isLoggedIn, token, username, handleLogin, handleLogout }}>
       {children}
     </UserContext.Provider>
   );
