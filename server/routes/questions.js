@@ -9,7 +9,10 @@ router.get('/', verify, async (req, res) => {
     const sortField = req.query.sortBy || 'date_posted';
     const sortOrder = req.query.sortOrder || 'desc';
     const sortQuery = { [sortField]: sortOrder === 'desc' ? -1 : 1 };
-    const questions = await Question.find().sort(sortQuery).exec();
+    const questions = await Question.find()
+      .sort(sortQuery)
+      .populate('answer_count')
+      .exec();
     res.send(questions);
   } catch (error) {
     res.status(500).send({ error });
@@ -20,6 +23,7 @@ router.post('/', verify, async (req, res) => {
   try {
     const { _id: userId, username } = req.user;
     const question = new Question({
+      title: req.body.title,
       question: req.body.question,
       user_id: userId,
       posted_by: username,
@@ -35,7 +39,13 @@ router.patch('/:id', verify, async (req, res) => {
   try {
     const updatedQuestion = await Question.findOneAndUpdate(
       { _id: req.params.id, user_id: req.user._id },
-      { $set: { question: req.body.question, edited: true } },
+      {
+        $set: {
+          title: req.body.title,
+          question: req.body.question,
+          edited: true,
+        },
+      },
       { new: true },
     );
     if (!updatedQuestion) {
