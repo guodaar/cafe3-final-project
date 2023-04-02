@@ -2,6 +2,8 @@ import { black, orange, white, yellow } from "../../consts/colors";
 import {
   border,
   boxShadow,
+  clickedBoxShadow,
+  clickedTransform,
   roundedBorder,
   transition,
 } from "../../consts/style";
@@ -13,11 +15,26 @@ interface Props extends PropsWithChildren {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   onClick?: () => void;
+  accent?: boolean;
+  fullWidth?: boolean;
 }
 
-const Button = ({ onClick, children, type, disabled }: Props) => {
+const Button = ({
+  onClick,
+  children,
+  type = "button",
+  accent = false,
+  fullWidth = false,
+  disabled,
+}: Props) => {
   return (
-    <CustomButton onClick={onClick} type={type} disabled={disabled}>
+    <CustomButton
+      onClick={onClick}
+      type={type}
+      accent={accent}
+      fullWidth={fullWidth}
+      disabled={disabled}
+    >
       {children}
     </CustomButton>
   );
@@ -25,26 +42,27 @@ const Button = ({ onClick, children, type, disabled }: Props) => {
 
 export default Button;
 
-const CustomButton = styled.button`
+const CustomButton = styled.button<{ accent: boolean; fullWidth: boolean }>`
   font-family: "Sora";
   text-transform: capitalize;
-  font-weight: 900;
+  font-family: "Montserrat";
   font-size: 1.2rem;
   letter-spacing: 1px;
   cursor: pointer;
-  background-color: ${yellow};
+  background-color: ${({ accent }) => (accent ? yellow : white)};
   box-shadow: ${boxShadow};
   border: ${border};
   border-radius: ${roundedBorder};
-  padding: 10px 15px;
-  margin-top: 12px;
+  padding: 12px 24px;
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   transition: ${transition};
 
   &:active {
-    box-shadow: none;
+    box-shadow: ${clickedBoxShadow};
+    transform: ${clickedTransform};
   }
 
   &:hover {
-    background-color: ${orange};
+    background-color: ${({ accent }) => (accent ? orange : yellow)};
   }
 `;
