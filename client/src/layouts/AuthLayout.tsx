@@ -1,6 +1,6 @@
-import { eggshell, lavender, white } from "../consts/colors";
+import { eggshell, lavender, white, yellow } from "../consts/colors";
 
-import Emoji from "../components/Emoji/Emoji";
+import { IoSparkles } from "react-icons/io5";
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
@@ -9,7 +9,7 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
     <MainContainer>
       <HeroContainer>
         <HeroText>
-          Igniting your curiosity with every <span>spark</span>
+          <span>Igniting</span> your curiosity with every spark <IoSparkles />
         </HeroText>
       </HeroContainer>
       <Content>{children}</Content>
@@ -45,5 +45,11 @@ const HeroText = styled.h1`
     background-color: ${lavender};
     color: ${white};
     padding: 0 18px 5px;
+  }
+
+  svg {
+    color: ${yellow};
+    margin-bottom: -8px;
+    font-size: 3.5rem;
   }
 `;

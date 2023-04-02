@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
-import SideBar from "./SideBar";
-import TopBar from "./TopBar";
+import SideBar from "../components/SideBar/SideBar";
+import TopBar from "../components/TopBar/TopBar";
 import { eggshell } from "../consts/colors";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -43,4 +43,5 @@ const Left = styled.div`
 
 const Right = styled.div`
   flex: 3;
+  margin-right: 5vw;
 `;
