@@ -2,37 +2,39 @@ import { PropsWithChildren, createContext, useState } from "react";
 
 import { useSessionStorage } from "../hooks/sessionStorage";
 
+type CurrentUser = {
+  token: string;
+  username: string;
+};
+
 const UserContext = createContext<{
-  token: string | null;
-  username: string | null;
+  user: CurrentUser | null;
   handleLogin: (newToken: any) => void;
   handleLogout: () => void;
   isLoggedIn: boolean;
 }>({
-  token: null,
-  username: null,
+  user: null,
   handleLogin: () => {},
   handleLogout: () => {},
   isLoggedIn: false,
 });
 
 const UserProvider = ({ children }: PropsWithChildren) => {
-  const [token, setToken] = useSessionStorage("token", null);
-  const [username, setUsername] = useState<string | null>(null);
-  const isLoggedIn = !!token;
+  const [user, setUser] = useSessionStorage("user", null);
+  const isLoggedIn = !!user;
 
   const handleLogin = (newToken: any) => {
-    setToken(newToken.token);
-    setUsername(newToken.username);
+    setUser(newToken);
   };
 
   const handleLogout = () => {
-    setToken(null);
-    setUsername(null);
+    setUser(null);
   };
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, token, username, handleLogin, handleLogout }}>
+    <UserContext.Provider
+      value={{ isLoggedIn, user, handleLogin, handleLogout }}
+    >
       {children}
     </UserContext.Provider>
   );
