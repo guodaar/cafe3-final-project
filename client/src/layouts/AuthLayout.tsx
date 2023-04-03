@@ -9,7 +9,8 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
     <MainContainer>
       <HeroContainer>
         <HeroText>
-          <span>Igniting</span> your curiosity with every spark <IoSparkles />
+          <IoSparkles />
+          Igniting your curiosity with every <span>spark</span>
         </HeroText>
       </HeroContainer>
       <Content>{children}</Content>
@@ -49,7 +50,6 @@ const HeroText = styled.h1`
 
   svg {
     color: ${yellow};
-    margin-bottom: -8px;
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 `;
