@@ -1,16 +1,16 @@
+import { HOME_PATH, LOGIN_PATH } from "../../routes/consts";
 import { PropsWithChildren, useContext } from "react";
-import { black, lavender } from "../../consts/colors";
-import { border, transition } from "../../consts/style";
+import { black, lavender, white } from "../../consts/colors";
+import { border, roundedBorder, transition } from "../../consts/style";
 
-import { BiArrowToRight } from "react-icons/bi";
 import Emoji from "../Emoji/Emoji";
-import { LOGIN_PATH } from "../../routes/consts";
+import { IoArrowForwardOutline } from "react-icons/io5";
 import { UserContext } from "../../contexts/userContext";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const TopBar = ({ children }: PropsWithChildren) => {
-  const { handleLogout, username } = useContext(UserContext);
+const TopBar = () => {
+  const { handleLogout, user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const logOut = () => {
@@ -20,13 +20,17 @@ const TopBar = ({ children }: PropsWithChildren) => {
 
   return (
     <Container>
-      <Logo>
+      <Logo onClick={() => navigate(HOME_PATH)}>
         Spark <Emoji symbol="✨" />
       </Logo>
       <Navigation>
-        <Item>Contact us</Item>
+        {user && (
+          <p>
+            Hi, <b>{user.username}</b>!
+          </p>
+        )}
         <Item onClick={logOut}>
-          Sign out <BiArrowToRight />
+          Sign out <IoArrowForwardOutline />
         </Item>
       </Navigation>
     </Container>
@@ -39,11 +43,12 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 5vw;
+  padding: 8px 7vw;
   border-bottom: ${border};
 `;
 
 const Logo = styled.h1`
+  cursor: pointer;
   text-transform: uppercase;
   color: ${black};
   font-family: "Montserrat";
@@ -62,36 +67,24 @@ const Item = styled.a`
   text-decoration: none;
   color: black;
   font-size: 0.9rem;
-  padding: 12px 0;
+  padding: 6px 16px;
   display: flex;
   align-items: center;
-  position: relative;
+  border: ${border};
+  border-radius: ${roundedBorder};
   transition: ${transition};
 
   svg {
     font-size: 1.2rem;
     margin-left: 5px;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 80%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 4px;
-    left: 0;
-    background-color: ${lavender};
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+    margin-bottom: 2px;
   }
 
   &:hover {
-    color: ${lavender};
+    background-color: ${white};
   }
 
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  &:active {
+    color: ${lavender};
   }
 `;
