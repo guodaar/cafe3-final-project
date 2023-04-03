@@ -1,7 +1,7 @@
 import { ComponentType, LazyExoticComponent, PropsWithChildren } from "react";
 
 type MainRoute = {
-  path: "/" | "/home" | "/question";
+  path: "/" | "/home" | "/question" | "/user";
   Component: LazyExoticComponent<ComponentType<any>>;
 };
 

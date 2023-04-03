@@ -3,10 +3,8 @@ import SideBar from "../components/SideBar/SideBar";
 import TopBar from "../components/TopBar/TopBar";
 import { eggshell } from "../consts/colors";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 const MainLayout = ({ children }: PropsWithChildren) => {
-  const navigate = useNavigate();
   return (
     <MainContainer>
       <TopBar></TopBar>
@@ -31,7 +29,7 @@ const MainContainer = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 54px 5vw;
+  padding: 54px 7vw;
   display: flex;
   justify-content: space-between;
   gap: 3vw;
@@ -43,5 +41,4 @@ const Left = styled.div`
 
 const Right = styled.div`
   flex: 3;
-  margin-right: 5vw;
 `;
