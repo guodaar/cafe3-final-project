@@ -1,45 +1,66 @@
+import { IoSend, IoSparkles } from "react-icons/io5";
 import {
   border,
   borderRadius,
   boxShadow,
-  clickedBoxShadow,
-  clickedTransform,
   transition,
 } from "../../consts/style";
-import { lavender, lightGrey, white, yellow } from "../../consts/colors";
+import {
+  darkLavender,
+  lavender,
+  lightGrey,
+  mediumGrey,
+  white,
+  yellow,
+} from "../../consts/colors";
 
-import { IoSparkles } from "react-icons/io5";
+import { PropsWithChildren } from "react";
+import { QUESTION_PATH } from "../../routes/consts";
 import { Question } from "../../types/question";
-import { date } from "yup";
+import QuestionsCardButton from "./QuestionsCardButton";
 import { formatDate } from "../../utils/formatDate";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
+interface Props extends PropsWithChildren {
   question: Question;
-};
+}
 
-const QuestionCard = ({ question }: Props) => {
+const QuestionCard = ({ question, children }: Props) => {
+  const navigate = useNavigate();
+
+  const handleAnswersClick = () => {
+    navigate(QUESTION_PATH);
+  };
+
   return (
     <Container>
       <Top>
-        <Title>
+        <TitleWrapper>
           <div>
             <IoSparkles />
             {question.title}:
           </div>
-          <div>
-            <AnswerCount>{question.answer_count} Answers</AnswerCount>
-          </div>
-        </Title>
+          <div></div>
+        </TitleWrapper>
         <Text>{question.question}</Text>
       </Top>
       <Subtitle>
-        <div>
-          <span>{question.posted_by}</span> asked on:{" "}
-          {formatDate(question.date_posted)}
-        </div>
-        {question.edited && <div>Edited</div>}
+        <span>{question.posted_by}</span> asked on:{" "}
+        <span>{formatDate(question.date_posted)} </span>
+        {question.edited && <i>(Edited)</i>}
       </Subtitle>
+      <Bottom>
+        <AnswerCount onClick={handleAnswersClick}>
+          {question.answer_count.toString()} Answers
+        </AnswerCount>
+        <Actions>
+          {children}
+          <QuestionsCardButton>
+            Reply <Arrow />
+          </QuestionsCardButton>
+        </Actions>
+      </Bottom>
     </Container>
   );
 };
@@ -47,22 +68,12 @@ const QuestionCard = ({ question }: Props) => {
 export default QuestionCard;
 
 const Container = styled.div`
-  cursor: pointer;
   background-color: ${white};
   box-shadow: ${boxShadow};
   border: ${border};
   border-radius: ${borderRadius};
   padding: 18px;
   transition: ${transition};
-
-  &:active {
-    box-shadow: ${clickedBoxShadow};
-    transform: ${clickedTransform};
-  }
-
-  &:hover {
-    background-color: ${lightGrey};
-  }
 `;
 
 const Top = styled.div`
@@ -70,10 +81,10 @@ const Top = styled.div`
   padding-bottom: 12px;
 `;
 
-const Title = styled.h3`
+const TitleWrapper = styled.div`
   font-weight: 700;
   font-size: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
 
@@ -83,12 +94,6 @@ const Title = styled.h3`
     margin-bottom: -5px;
     margin-right: 5px;
   }
-`;
-
-const AnswerCount = styled.p`
-  color: ${lavender};
-  font-weight: 500;
-  font-size: 1.1rem;
 `;
 
 const Text = styled.p`
@@ -101,10 +106,52 @@ const Subtitle = styled.p`
   font-weight: 300;
   font-size: 0.9rem;
   margin-top: 8px;
-  display: flex;
-  justify-content: space-between;
 
   span {
     font-weight: 700;
   }
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+`;
+
+const AnswerCount = styled.p`
+  cursor: pointer;
+  color: ${lavender};
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 2px 0 2px 0;
+  position: relative;
+  transition: ${transition};
+
+  &::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    border-width: 0 0 1.5px;
+    border-style: solid;
+  }
+
+  &:hover::after {
+    border-width: 0;
+  }
+
+  &:active {
+    color: ${darkLavender};
+  }
+`;
+
+const Actions = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
+const Arrow = styled(IoSend)`
+  color: ${lavender};
 `;
