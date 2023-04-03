@@ -8,6 +8,6 @@ export interface Question extends NewQuestion {
   user_id: string;
   posted_by: string;
   edited: boolean;
-  date_posted: Date;
+  date_posted: string;
   answer_count: Number;
 }

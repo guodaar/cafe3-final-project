@@ -15,3 +15,15 @@ export const getQuestions = (token: string) => {
     })
     .then((response) => response.data);
 };
+
+export const createQuestion = async (
+  token: string,
+  newQuestion: NewQuestion
+) => {
+  const response = await axios.post(QUESTIONS_URL, newQuestion, {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+  return response.data.data;
+};
