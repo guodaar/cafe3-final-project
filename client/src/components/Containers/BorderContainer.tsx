@@ -1,8 +1,8 @@
 import { border, boxShadow, roundedBorder } from "../../consts/style";
+import { lightGrey, yellow } from "../../consts/colors";
 
-import Emoji from "../Emoji/Emoji";
+import { IoSparkles } from "react-icons/io5";
 import { PropsWithChildren } from "react";
-import { lightGrey } from "../../consts/colors";
 import styled from "styled-components";
 
 interface Props extends PropsWithChildren {
@@ -15,7 +15,7 @@ const BorderContainer = ({ title, symbol, children }: Props) => {
     <Container>
       <Title>
         {title}
-        <Emoji symbol={symbol} />
+        <IoSparkles />
       </Title>
       {children}
     </Container>
@@ -37,4 +37,11 @@ const Title = styled.h2`
   font-family: "Montserrat";
   font-size: 1.7rem;
   margin-bottom: 24px;
+
+  svg {
+    color: ${yellow};
+    font-size: 1.7rem;
+    margin-bottom: -5px;
+    margin-left: 5px;
+  }
 `;

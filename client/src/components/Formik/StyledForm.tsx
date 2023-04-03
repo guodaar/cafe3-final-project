@@ -9,7 +9,7 @@ const StyledForm = ({ children }: PropsWithChildren) => {
 export default StyledForm;
 
 const FormContainer = styled(Form)`
-  max-width: 300px;
+  width: 100%;
   margin: 0 auto;
   border-radius: 4px;
   display: flex;

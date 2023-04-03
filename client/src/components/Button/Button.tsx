@@ -1,4 +1,11 @@
-import { black, orange, white, yellow } from "../../consts/colors";
+import {
+  black,
+  lavender,
+  lightGrey,
+  orange,
+  white,
+  yellow,
+} from "../../consts/colors";
 import {
   border,
   boxShadow,
@@ -63,6 +70,6 @@ const CustomButton = styled.button<{ accent: boolean; fullWidth: boolean }>`
   }
 
   &:hover {
-    background-color: ${({ accent }) => (accent ? orange : yellow)};
+    background-color: ${({ accent }) => (accent ? orange : lavender)};
   }
 `;
