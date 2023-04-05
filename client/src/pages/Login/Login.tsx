@@ -4,8 +4,7 @@ import { HOME_PATH, REGISTER_PATH } from "../../routes/consts";
 import { Link, useNavigate } from "react-router-dom";
 
 import BorderContainer from "../../components/Containers/BorderContainer";
-import Button from "../../components/Button/Button";
-import Emoji from "../../components/Emoji/Emoji";
+import Button from "../../components/Buttons/Button";
 import { Formik } from "formik";
 import FormikInput from "../../components/Formik/FormikInput";
 import { LoginUser } from "../../types/user";
