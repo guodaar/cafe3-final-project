@@ -2,6 +2,7 @@ import { Navigate, Route, Routes as RoutesWrapper } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { authLayoutRoutes, mainLayoutRoutes } from "./consts";
 
+import Loader from "../components/Loader/Loader";
 import { UserContext } from "../contexts/userContext";
 
 const Routes = () => {
@@ -16,7 +17,7 @@ const Routes = () => {
           path={path}
           element={
             <Layout>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader isLoading={true} />}>
                 <Component />
               </Suspense>
             </Layout>
