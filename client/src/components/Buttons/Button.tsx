@@ -1,12 +1,4 @@
 import {
-  black,
-  lavender,
-  lightGrey,
-  orange,
-  white,
-  yellow,
-} from "../../consts/colors";
-import {
   border,
   boxShadow,
   clickedBoxShadow,
@@ -14,6 +6,7 @@ import {
   roundedBorder,
   transition,
 } from "../../consts/style";
+import { lavender, orange, white, yellow } from "../../consts/colors";
 
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
@@ -53,14 +46,14 @@ const CustomButton = styled.button<{ accent: boolean; fullWidth: boolean }>`
   font-family: "Sora";
   text-transform: capitalize;
   font-family: "Montserrat";
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
   cursor: pointer;
   background-color: ${({ accent }) => (accent ? yellow : white)};
   box-shadow: ${boxShadow};
   border: ${border};
   border-radius: ${roundedBorder};
-  padding: 12px 24px;
+  padding: 10px 0.8vw;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   transition: ${transition};
 

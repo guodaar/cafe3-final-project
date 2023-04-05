@@ -37,30 +37,32 @@ export default StyledModal;
 
 const Container = styled(Modal)<{ modalSize: string }>`
   position: relative;
-  min-height: 18rem;
-  background-color: ${lightGrey};
+  min-height: 19rem;
+  background-color: ${white};
   color: ${black};
   border-radius: ${roundedBorder};
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border: ${border};
   outline: none;
+  padding: 32px 12vw;
 
   ${({ modalSize }) => {
     if (modalSize === "large") {
       return `
       margin: 6vh 12vw;
-      padding: 24px 12vw;
+      padding: 32px 12vw;
       `;
     } else if (modalSize === "medium") {
       return `
       margin: 14vh 18vw;
-      padding: 24px 12vw;
+      padding: 32px 12vw;
       `;
     } else if (modalSize === "small") {
       return `
       margin: 16vh 24vw;
-      padding: 24px 8vw;
+      padding: 32px 8vw;
     `;
     }
   }}
@@ -79,6 +81,6 @@ const Title = styled.h3`
   font-size: 1.6rem;
   font-weight: 500;
   text-align: center;
-  margin: 12px 0 24px;
+  margin-bottom: 24px;
   color: ${black};
 `;

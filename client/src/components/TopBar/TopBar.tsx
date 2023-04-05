@@ -1,12 +1,12 @@
 import { HOME_PATH, LOGIN_PATH } from "../../routes/consts";
-import { PropsWithChildren, useContext } from "react";
-import { black, lavender, white } from "../../consts/colors";
+import { black, lavender, white, yellow } from "../../consts/colors";
 import { border, roundedBorder, transition } from "../../consts/style";
 
-import Emoji from "../Emoji/Emoji";
 import { IoArrowForwardOutline } from "react-icons/io5";
+import { IoSparkles } from "react-icons/io5";
 import { UserContext } from "../../contexts/userContext";
 import styled from "styled-components";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
@@ -21,7 +21,7 @@ const TopBar = () => {
   return (
     <Container>
       <Logo onClick={() => navigate(HOME_PATH)}>
-        Spark <Emoji symbol="✨" />
+        Spark <IoSparkles />
       </Logo>
       <Navigation>
         {user && (
@@ -53,6 +53,12 @@ const Logo = styled.h1`
   color: ${black};
   font-family: "Montserrat";
   font-size: 2.3rem;
+
+  svg {
+    color: ${yellow};
+    font-size: 2rem;
+    margin-bottom: -2px;
+  }
 `;
 
 const Navigation = styled.div`

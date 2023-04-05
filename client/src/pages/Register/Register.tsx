@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
 import BorderContainer from "../../components/Containers/BorderContainer";
-import Button from "../../components/Button/Button";
+import Button from "../../components/Buttons/Button";
 import { Formik } from "formik";
 import FormikInput from "../../components/Formik/FormikInput";
 import { LOGIN_PATH } from "../../routes/consts";

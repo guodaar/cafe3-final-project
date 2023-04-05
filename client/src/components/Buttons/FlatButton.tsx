@@ -1,14 +1,18 @@
 import { borderRadius, transition } from "../../consts/style";
-import { lavender, lightGrey, mediumGrey } from "../../consts/colors";
+import { lightGrey, mediumGrey } from "../../consts/colors";
 
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
-const QuestionsCardButton = ({ children }: PropsWithChildren) => {
-  return <Button>{children}</Button>;
+interface Props extends PropsWithChildren {
+  onClick: () => void;
+}
+
+const FlatButton = ({ onClick, children }: Props) => {
+  return <Button onClick={onClick}>{children}</Button>;
 };
 
-export default QuestionsCardButton;
+export default FlatButton;
 
 const Button = styled.button`
   cursor: pointer;
