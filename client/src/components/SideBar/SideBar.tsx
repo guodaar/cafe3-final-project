@@ -1,9 +1,10 @@
 import { HOME_PATH, USER_PATH } from "../../routes/consts";
 
-import Button from "../Button/Button";
+import Button from "../Buttons/Button";
 import { HiPencilAlt } from "react-icons/hi";
 import StyledModal from "../StyledModal/StyledModal";
 import SubmitQuestion from "../../pages/Question/SubmitQuestion";
+import { screenSize } from "../../consts/mediaQueries";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -45,10 +46,16 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 
   svg {
     font-size: 1.5rem;
     margin-bottom: -5px;
+  }
+
+  @media (max-width: ${screenSize.tablet}) {
+    flex-direction: row;
+    height: 50px;
+    padding: 12px 8px;
   }
 `;
