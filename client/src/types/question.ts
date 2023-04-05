@@ -1,5 +1,4 @@
 export type NewQuestion = {
-  title: string;
   question: string;
 };
 
