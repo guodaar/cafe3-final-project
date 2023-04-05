@@ -16,6 +16,7 @@ const answerSchema = new mongoose.Schema(
     date_posted: { type: Date, default: Date.now },
     posted_by: { type: String, required: true },
     edited: { type: Boolean, default: false },
+    vote: { type: Number, default: 0 },
   },
   { collection: 'answers' },
 );
