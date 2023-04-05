@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema(
   {
-    title: { type: String, default: null, required: true },
     question: { type: String, default: null, required: true },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     date_posted: { type: Date, default: Date.now },

@@ -23,7 +23,6 @@ router.post('/', verify, async (req, res) => {
   try {
     const { _id: userId, username } = req.user;
     const question = new Question({
-      title: req.body.title,
       question: req.body.question,
       user_id: userId,
       posted_by: username,
@@ -41,7 +40,6 @@ router.patch('/:id', verify, async (req, res) => {
       { _id: req.params.id, user_id: req.user._id },
       {
         $set: {
-          title: req.body.title,
           question: req.body.question,
           edited: true,
         },
