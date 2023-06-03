@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const questionsRoute = require('./routes/questions');
@@ -21,6 +22,16 @@ app.use(express.json());
 app.use('/api/user', authRoute);
 app.use('/api/questions', questionsRoute);
 app.use('/api/answers', answersRoute);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '..', 'client', 'build', 'index.html'),
+    ),
+  );
+}
 
 app.listen(port, () => {
   console.log(`Server is running on ${port} port`);

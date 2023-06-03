@@ -1,0 +1,12 @@
+{
+  "name": "cafe3-final-project",
+  "version": "1.0.0",
+  "description": "## Description This is a web app for sparking conversations, posting questions and answers.",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./server && node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
