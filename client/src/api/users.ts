@@ -4,9 +4,9 @@ import axios from "axios";
 
 const BASE_URL = "https://spark-app-sdsp.onrender.com";
 
-const REGISTER_URL = BASE_URL + "/user/register";
+const REGISTER_URL = BASE_URL + "/register";
 
-const LOGIN_URL = BASE_URL + "/user/login";
+const LOGIN_URL = BASE_URL + "/login";
 
 export const createUser = async (newUser: NewUser) => {
   const response = await axios.post(REGISTER_URL, newUser);
