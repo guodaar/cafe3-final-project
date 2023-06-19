@@ -1,7 +1,7 @@
 import { NewQuestion } from "../types/question";
 import axios from "axios";
 
-const BASE_URL = "https://spark-app-sdsp.onrender.com";
+const BASE_URL = "https://spark-app-sdsp.onrender.com/api";
 
 const QUESTIONS_URL = BASE_URL + "/questions";
 
